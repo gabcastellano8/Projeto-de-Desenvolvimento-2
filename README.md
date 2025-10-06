@@ -111,8 +111,6 @@ Avaliar engajamento pelo número de hábitos concluídos.
 
 Coletar feedback qualitativo sobre motivação e clareza da interface.
 
-Aplicar questionário baseado em ISO/IEC 25010 para medir usabilidade e confiabilidade.
-
 # Consolidação dos Dados
 
 Médias de hábitos cumpridos antes e depois da utilização.
