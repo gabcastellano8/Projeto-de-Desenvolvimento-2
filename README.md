@@ -1,138 +1,140 @@
+#  Documentação do Projeto: HabitSPA
 #  Projeto-de-Desenvolvimento-2
 
 # Resumo do Projeto
 
-Muitas pessoas enfrentam dificuldades em manter disciplina na criação e acompanhamento de novos hábitos, o que prejudica sua produtividade, saúde e bem-estar.
-O problema é a falta de ferramentas simples, acessíveis e motivadoras para registrar hábitos, acompanhar progresso e gerar insights visuais sobre a evolução.
-Nossa proposta é desenvolver um aplicativo multiplataforma (web e mobile) que combine funcionalidades de lista de tarefas com acompanhamento de hábitos, incluindo relatórios gráficos e notificações motivacionais.
-O impacto esperado é oferecer ao usuário maior organização, disciplina e motivação no alcance de metas pessoais e profissionais.
+Muitas pessoas enfrentam dificuldades significativas em manter a disciplina necessária para a criação e acompanhamento de novos hábitos, o que impacta negativamente sua produtividade e saúde. O problema central reside na escassez de ferramentas que sejam simultaneamente simples, acessíveis e capazes de auxiliar não apenas no planejamento, mas na execução das tarefas.
+
+A solução proposta é o HabitSPA, uma aplicação web responsiva que integra funcionalidades de lista de tarefas (to-do list) com um rastreador de hábitos robusto. O grande diferencial do projeto é a inclusão do "Modo Foco", uma ferramenta de atenção plena que auxilia o usuário no momento da ação, além de relatórios gráficos para acompanhamento histórico. A implementação deste sistema visa proporcionar ao usuário maior organização, disciplina e consistência no alcance de suas metas.
 
 # Definição do Problema
 
-Atualmente, usuários recorrem a anotações manuais, planilhas ou aplicativos fragmentados para controle de hábitos.
-Essas soluções apresentam problemas como:
+Atualmente, o controle de rotinas e hábitos é realizado de forma fragmentada. Usuários frequentemente recorrem a anotações manuais, planilhas complexas ou diversos aplicativos desconexos para planejar e executar. As soluções existentes apresentam lacunas críticas, tais como:
 
-Falta de integração entre tarefas e hábitos.
+Falta de ferramentas de execução: Muitos apps permitem listar tarefas, mas não oferecem suporte durante a realização delas.
 
-Pouco engajamento, já que muitos apps não oferecem visualizações claras do progresso.
+Baixo engajamento: A ausência de feedback visual imediato sobre o progresso desestimula a continuidade.
 
-Baixa personalização, com poucos recursos de adaptação às necessidades individuais.
+Desconexão: A separação entre "o que tenho que fazer hoje" (agenda) e "quais hábitos quero construir" (metas).
 
-Segundo estudo de Lally et al. (2009), o tempo médio para formar um novo hábito é de 66 dias. Nesse período, o acompanhamento constante é essencial. Sem ferramentas adequadas, há maior risco de desistência.
+Segundo Lally et al. (2009), a formação de um hábito exige repetição consistente. Sem ferramentas que removam o atrito cognitivo e ofereçam suporte visual, o risco de abandono aumenta consideravelmente.
 
 # Objetivos
 <h4>Objetivo Geral </h4>
 
-Desenvolver um aplicativo inovador de gerenciamento de hábitos, que una to-do list, monitoramento de progresso e relatórios gráficos, visando auxiliar os usuários a manter consistência na criação de hábitos.
+Desenvolver uma aplicação web de gerenciamento de hábitos que unifique o planejamento diário, a execução focada e o monitoramento de progresso, auxiliando usuários a manterem a consistência.
 
 <h4> Objetivos Específicos </h4>
 
-Criar cadastro e gerenciamento de hábitos com definição de metas diárias ou semanais.
+Criar um Dashboard Interativo que permita a visualização e manipulação (CRUD) de hábitos diários.
 
-Permitir organização de hábitos em cards visuais, fáceis de manipular.
+Implementar o Modo Foco: uma interface minimalista com cronômetro (Pomodoro) integrado para execução de tarefas sem distrações.
 
-Implementar sistema de notificações para lembretes e motivação.
+Desenvolver um sistema de Feedback Visual Imediato (Optimistic UI) para aumentar a satisfação do usuário ao concluir tarefas.
 
-Desenvolver relatórios com gráficos de evolução.
-
-Testar usabilidade com usuários reais e validar eficácia na rotina.
+Fornecer relatórios de consistência (Heatmaps e gráficos de frequência) para análise de longo prazo.
 
 # Stack Tecnológico
 
-Linguagens: TypeScript / JavaScript
+Para o desenvolvimento da solução, foi definido um conjunto tecnológico focado em desempenho, tipagem segura e componentização moderna:
 
-Backend: Node.js + Express + TypeORM
+Linguagem: TypeScript (garantindo integridade de dados e redução de erros).
 
-Mobile App: React Native
+Frontend: ReactJS com Vite (focado em performance e build otimizado).
 
-Banco de Dados: PostgreSQL ou SQLite
+Estilização: CSS Modules e CSS Puro (para controle granular de estilos e design responsivo).
 
-Notificações: Push Notifications (Firebase/Expo)
+Comunicação: Axios (cliente HTTP para consumo da API REST).
 
-Controle de Versão: GitHub
+Backend: Node.js com Express.
 
-Esse conjunto tecnológico foi definido visando desempenho, integração fluida entre frontend e backend, e facilidade de expansão futura, permitindo que novas funcionalidades possam ser incorporadas sem comprometer a arquitetura atual.
+Controle de Versão: Git/GitHub.
 
 # Descrição da Solução
 
-O sistema será estruturado em três camadas:
+O sistema HabitSPA foi estruturado em três módulos principais de navegação:
 
-<h4> Camada Lógica (Backend): </h4>
+<h4>Dashboard (Planejamento e Gestão)</h4>
+A tela principal do sistema. Funciona como uma agenda diária onde o usuário pode:
 
-Controle de usuários, hábitos e progresso.
+Navegar entre dias (passado, presente e futuro).
 
-Integração com banco de dados para armazenar registros históricos.
+Visualizar a lista de tarefas agendadas para a data específica.
 
-API REST para comunicação com os aplicativos web e mobile.
+Realizar check-in rápido de tarefas.
 
-<h4> Camada de Apresentação (App): </h4>
+Criar, editar e excluir moldes de hábitos.
 
-Interface intuitiva com cards de hábitos (ex.: beber água, ler, estudar).
+<h4>Modo Foco (Execução)</h4>
+Uma rota exclusiva desenhada para eliminar ruídos visuais e combater a procrastinação. O sistema:
 
-To-do list integrada para controle diário.
+Filtra automaticamente apenas as tarefas pendentes do dia atual.
 
-Relatórios gráficos mostrando frequência de cumprimento.
+Oferece um cronômetro configurável (15, 25, 45 min).
 
-Sistema de conquistas/gamificação para engajar o usuário.
+Ao término do tempo, comunica-se com a API para concluir a tarefa automaticamente, oferecendo uma recompensa visual ao usuário.
 
-<h4> Recursos Extras: </h4>
+<h4>Analytics (Monitoramento)</h4>
+Módulo dedicado à visão de longo prazo, apresentando um histórico visual (Heatmap de dias concluídos vs. perdidos) e gráficos de frequência, permitindo ao usuário identificar padrões de comportamento.
 
-Notificações push para lembrar hábitos.
+#Arquitetura e UX
+O projeto adota uma arquitetura baseada em componentes funcionais (React Hooks), separando a lógica de negócio (services) da interface (pages/components).
 
-Possibilidade de personalizar metas (horários, dias da semana).
+Destaque de UX: Interface Otimista (Optimistic UI) Para melhorar a percepção de velocidade, foi implementada uma estratégia de atualização otimista. Ao marcar um hábito como concluído (seja no Dashboard ou no Modo Foco), a interface é atualizada instantaneamente, sem aguardar a resposta do servidor. A requisição ocorre em segundo plano e, apenas em caso de erro, o estado é revertido e o usuário notificado.
 
-Exportação de relatórios para acompanhamento pessoal.
+# Validação e Estratégia
 
-#Arquitetura
+validação da solução será realizada através de testes de usabilidade:
 
-Artefatos previstos:
+Método: Teste de uso contínuo por 2 semanas com grupo focal.
 
-Benchmarking: comparação com apps como Habitica, HabitNow, Notion.
+Métrica: Aplicação do questionário SUS (System Usability Scale) ao final do período.
 
-Canvas (MVP Canvas ou Business Model Canvas).
-
-Personas: estudante, profissional que deseja melhorar produtividade, pessoa focada em saúde.
-
-Casos de Uso: cadastrar hábito, marcar como concluído, visualizar progresso, receber notificações.
-
-Protótipos de interface em Figma (cards, relatórios, dashboard).
-
-# Validação
-
-Testes de usabilidade com grupo de 5 a 10 usuários.
-
-Questionário de satisfação e facilidade de uso.
-
-Comparação entre usuários que utilizam o app e os que não utilizam durante 2 semanas.
-
-# Estratégia
-
-Avaliar engajamento pelo número de hábitos concluídos.
-
-Coletar feedback qualitativo sobre motivação e clareza da interface.
+Objetivo: Validar se a introdução do "Modo Foco" aumentou a taxa de conclusão de tarefas em comparação ao uso de listas simples.
 
 # Consolidação dos Dados
 
-Médias de hábitos cumpridos antes e depois da utilização.
+Para mensurar o sucesso do projeto, serão analisados:
 
-Gráficos com evolução de engajamento.
+Taxa de Check-in: Média de hábitos cumpridos diariamente.
 
-Relatos dos usuários sobre mudanças na rotina.
+Retenção: Frequência de retorno ao aplicativo.
+
+Feedback Qualitativo: Relatos sobre a eficácia do cronômetro na redução de distrações.
 
 # Conclusões
 
-O aplicativo demonstrou viabilidade como ferramenta de apoio na criação de novos hábitos. A combinação de to-do list, relatórios gráficos e notificações mostrou-se um diferencial frente a concorrentes. O sistema contribuiu para aumentar motivação, disciplina e consistência dos usuários.
+O desenvolvimento do HabitSPA demonstrou a viabilidade de criar uma ferramenta web robusta que une planejamento e execução. A utilização de tecnologias modernas (React/Vite) permitiu uma interface fluida e responsiva. Os testes de desenvolvimento indicam que a funcionalidade "Modo Foco" atua como um forte diferencial competitivo, preenchendo a lacuna entre "planejar fazer" e "realmente fazer".
 
 # Limitações e Perspectivas Futuras
 
-Gráficos iniciais simples (aprimorar com dashboards interativos no futuro).
+Limitações Atuais (MVP):
 
-Futuro: integração com wearables (smartwatch), uso de IA para sugerir hábitos e rotinas personalizadas.
+A aplicação web não possui notificações push nativas (apenas visuais).
+
+Ausência de integração com calendários externos (Google Calendar).
+
+Perspectivas Futuras:
+
+Desenvolvimento da versão Mobile nativa (React Native) para habilitar notificações push.
+
+Implementação de Gamificação (sistema de níveis e XP).
+
+Sincronização em nuvem para uso offline (PWA).
+
+#  Postmortem (Lições Aprendidas e Desafios Técnicos)
+Durante o desenvolvimento, a equipe enfrentou e superou desafios técnicos significativos:
+
+Manipulação de Timezones: Houve um desafio crítico na sincronização de datas entre o cliente e o servidor. A solução exigiu a normalização das datas para o formato ISO local (en-CA / YYYY-MM-DD), evitando que tarefas fossem salvas no dia incorreto devido a conversões automáticas para UTC.
+
+Consistência de API REST: A integração revelou inconsistências nos métodos HTTP suportados pelo Backend (especificamente a rejeição de PATCH em favor de PUT para atualizações parciais), exigindo refatoração da camada de serviço e adaptação do Frontend.
+
+Estruturas de Dados Aninhadas: O tratamento de dados complexos vindos da API (Objeto Agendamento contendo Objeto Hábito) exigiu a criação de interfaces TypeScript robustas e funções "helpers" de normalização (resolveHabitName) para evitar falhas de renderização quando propriedades variavam (ex: nome vs titulo).
 
 # Referências Bibliográficas
 
 LALLY, Phillippa; VAN JAARSVELD, C. H. M.; POTTS, H. W. W.; WARDLE, J. How are habits formed: Modelling habit formation in the real world. European Journal of Social Psychology, 2009.
 
-WAZLAWICK, Raul Sidnei. Metodologia de pesquisa para ciência da computação. Rio de Janeiro: Elsevier, 2009.
+REACT JS. Documentação oficial. Disponível em: https://react.dev.
 
-Documentação oficial React Native: https://reactnative.dev
+MDN WEB DOCS. Date.prototype.toLocaleDateString(). Disponível em: https://developer.mozilla.org.
